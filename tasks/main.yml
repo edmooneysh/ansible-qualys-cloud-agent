@@ -1,18 +1,13 @@
 ---
 # tasks file for ansible-qualys-cloud-agent
-- name: Install the agent
-  yum:
-    name: "{{ qualys_agent_repository_uri }}"
-    state: state: "{{ 'latest' if qualys_agent_pkg_state_latest else 'present' }}"
-  when: ansible_pkg_mgr == 'yum'
 
 - name: Download the installer
-  shell: 'wget {{dl_location}}'
+  shell: 'wget {{qualys_agent_dl_location}}'
 
 - name: Run the Install
-  shell: 'sudo rpm -ivh {{ @@QualysCloudAgent.rpm}}'
+  shell: 'sudo rpm -ivh {{ qualys_agent_filename }}'
   sudo: true
 
-- name: Activate
-  shell: '/usr/local/qualys/cloud-agent/bin/qualys-cloud-agent.sh ActivationId={{ ActivationId }} CustomerId={{ CustomerId }}'
+- name: Activate Qualys
+  shell: '/usr/local/qualys/cloud-agent/bin/qualys-cloud-agent.sh ActivationId={{ qualys_agent_activationid }} CustomerId={{ qualys_agent_customerid }}'
   sudo: true

@@ -1,9 +1,9 @@
 ---
 # defaults file for ansible-qualys-cloud-agent
 qualys_agent_pkg_state_latest: no
-qualys_agent_repository_uri: ''
-dl_location: ''
-ActivationId: ''
-CustomerId: ''
+qualys_agent_filename: 'QualysCloudAgent.rpm'
+qualys_agent_dl_location: ''
+qualys_agent_activationid: ''
+qualys_agent_customerid: ''
 
 ...

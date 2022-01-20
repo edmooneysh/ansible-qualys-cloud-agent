@@ -18,22 +18,22 @@ Any pre-requisites that may not be covered by Ansible itself or the role should 
 Default: `no`
 Controls whether to use 'present' or 'latest' for package installation
 
-#### [`qualys_agent_repository_uri`][qualys_agent_repository_uri]
-Default: `wibble`
-The repository to use for installation of the agent.
-
 #### [`qualys_agent_activation_key`][qualys_agent_activation_key]
 Default: None
 Mandatory. The activation key for the asset to use for installation.
 
-
-#### [`qualys_agent_dl_location`][qualys_agent_activation_key]
+#### [`qualys_agent_dl_location`][qualys_agent_dl_location]
 Default: None
 Mandatory. Download location for the rpm file
 
-#### [`qualys_agent_customerId:`][qualys_agent_customerid]
+#### [`qualys_agent_customerId`][qualys_agent_customerid]
 Default: None
 Mandatory. CustomerId parameter
+
+#### [`qualys_agent_filename`][qualys_agent_filename]
+Default: None
+Mandatory. Qualys filename ex: QualysCloudAgent.rpm 
+
 
 
 ## Dependencies
@@ -48,6 +48,7 @@ None.
       vars:
         qualys_agent_activation_key: "{{ lookup('env', 'TEST_QUALYS_AGENT_ACTIVATION_KEY') }}"
         qualys_agent_dl_location: "{{ lookup('env', 'TEST_QUALYS_dl_location') }}"
+        qualys_agent_filename: "{{ lookup('env', 'TEST_QUALYS_qualys_agent_filename') }}"
         qualys_agent_customerId: "{{ lookup('env', 'TEST_QUALYS_AGENT_CustomerId') }}"
       roles:
          - { role: shrikeh.qualys-cloud-agent }
