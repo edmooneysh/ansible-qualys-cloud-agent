@@ -26,6 +26,16 @@ The repository to use for installation of the agent.
 Default: None
 Mandatory. The activation key for the asset to use for installation.
 
+
+#### [`qualys_agent_dl_location`][qualys_agent_activation_key]
+Default: None
+Mandatory. Download location for the rpm file
+
+#### [`qualys_agent_customerId:`][qualys_agent_customerid]
+Default: None
+Mandatory. CustomerId parameter
+
+
 ## Dependencies
 ------------
 
@@ -37,6 +47,8 @@ None.
     - hosts: servers
       vars:
         qualys_agent_activation_key: "{{ lookup('env', 'TEST_QUALYS_AGENT_ACTIVATION_KEY') }}"
+        qualys_agent_dl_location: "{{ lookup('env', 'TEST_QUALYS_dl_location') }}"
+        qualys_agent_customerId: "{{ lookup('env', 'TEST_QUALYS_AGENT_CustomerId') }}"
       roles:
          - { role: shrikeh.qualys-cloud-agent }
 ```

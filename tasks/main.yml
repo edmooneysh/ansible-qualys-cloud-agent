@@ -5,3 +5,14 @@
     name: "{{ qualys_agent_repository_uri }}"
     state: state: "{{ 'latest' if qualys_agent_pkg_state_latest else 'present' }}"
   when: ansible_pkg_mgr == 'yum'
+
+- name: Download the installer
+  shell: 'wget {{dl_location}}'
+
+- name: Run the Install
+  shell: 'sudo rpm -ivh {{ @@QualysCloudAgent.rpm}}'
+  sudo: true
+
+- name: Activate
+  shell: '/usr/local/qualys/cloud-agent/bin/qualys-cloud-agent.sh ActivationId={{ ActivationId }} CustomerId={{ CustomerId }}'
+  sudo: true
